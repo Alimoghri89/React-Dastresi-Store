@@ -1,0 +1,215 @@
+{
+    "menu":[
+        {
+            "title": "خانه"
+        },
+        {
+            "title" : "لوازم جانبی موبایل و کامپیوتر", 
+            "submenu":[
+                "هولدر و نگهدارنده",
+                "تجهیزات ذخیره سازی",
+                "اسپیکر",
+                "ماوس و کیبرد و پدموس",
+                "هندزفری و هدست و میکروفون",
+                "پاور بانک و جامپر استارتر",
+                "کابل شارژ",
+                "آداپتور و شارژر",
+                "دسته بازی و خنک کننده موبایل",
+                "انواع تبدیل برق",
+                "انواع تبدیل برق",
+                "کابل و دانگل انتقال تصویر",
+                "انواع هاب",
+                "فن خنک کننده کامپیوتر",
+                "قاب و گلس"
+            ]
+        },
+        {
+            "title" : "کابل - مبدل - رابط", 
+            "submenu":[
+                "کابل HDMI",
+                "کابل پرینتر",
+                "کابل هارد اکسترنال",
+                "انواع رابط و تبدیل",
+                "کابل AUX",
+                "کابل ۲ به ۱ صدا",
+                "کابل اپتیکال",
+                "کابل و فیش OTG"
+            ]
+        },
+        {
+            "title" : "لوازم تولید محتوا", 
+            "submenu":[
+                "میکروفون",
+                "رینگ لایت و پایه"
+            ]
+        },
+        {
+            "title" : "لوازم شبکه", 
+            "submenu":[
+                "مودم - روتر",
+                "هاب شبکه",
+                "مودم همراه",
+                "لوازم جانبی"
+            ]
+        },
+        {
+            "title" : "کنسول بازی و لوازم جانبی", 
+            "submenu":[
+                "هندزفری و هدست",
+                "دسته بازی",
+                "موس و کیبرد",
+                "کیف",
+                "کنسول",
+                "شارژر دسته بازی"
+            ]
+        },
+        {
+            "title" : "لوازم خانگی و شخصی", 
+            "submenu":[
+                "انواع گجت های جذاب",
+                "باتری و شارژر",
+                "اندروید باکس و گیرنده ی دیجیتال",
+                "آنتن رومیزی",
+                "مچ بند و ساعت هوشمند",
+                "محصولات کمبو",
+                "رابط برق و USB",
+                "اف ام پلیر"
+            ]
+        },
+        {
+            "title" : "برند ها", 
+            "submenu":[
+                ["هایلو", "Haylou"],
+                ["دای هارد", "Die Hard"],
+                ["اسکال کندی", "SkullCandy"],
+                ["اپل", "Apple"],
+                ["کملیون", "Camelion"],
+                ["کلومن پلاس", "Koluman Plus"],
+                ["یسیدو", "Yesido"],
+                ["نزتک", "Naztech"],
+                ["پرووان", "ProOne"],
+                ["ال دی نیو", "Ldino"],
+                ["دوراسل", "Duracell"],
+                ["سومو", "Somo"],
+                ["بیسوس", "Baseus"],
+                ["بویا", "Boya"],
+                ["مک دودو", "Mcdodo"],
+                ["پاورولوژی", "Powerology"],
+                ["روپاور", "Ravpower"],
+                ["آکی", "Aukey"],
+                ["انکر", "Anker"],
+                ["آینوبن", "Inoben"],
+                ["مومکس", "Momax"],
+                ["وسترن دیجیتال", "Western Digital"],
+                ["شیائومی", "Xiaomi"],
+                ["پاناسونیک", "Panasonic"],
+                ["نیکین", "Neekin"],
+                ["پایونیر", "Pioneer"],
+                ["جی پی", "GP"],
+                ["ای فورتک", "A4tech"],
+                ["وان مور", "1more"],
+                ["مکسل", "Maxell"]
+            ]
+        }
+    ],
+    "mainSlider": [
+        {
+            "id": 1,
+            "name": "jashnvare.jpg",
+            "alt": "slider",
+            "path": "public/mainSlider/jashnvare.jpg"
+        },
+        {
+            "id": 2,
+            "name": "Artboard-5Artboard-6.png",
+            "alt": "artboard",
+            "path": "public/mainSlider/Artboard-5Artboard-6.png"
+        },
+        {
+            "id": 3,
+            "name": "banner-dastresi-1 (1).png",
+            "alt": "banner",
+            "path": "public/mainSlider/banner-dastresi-1 (1).png"
+        },
+        {
+            "id": 4,
+            "name": "banner-dastresi-2-min.png",
+            "alt": "banner",
+            "path": "public/mainSlider/banner-dastresi-2-min.png"
+        },
+        {
+            "id": 5,
+            "name": "banner-dastresi-4-min.png",
+            "alt": "banner",
+            "path": "public/mainSlider/banner-dastresi-4-min.png"
+        }
+        
+    ],
+    "products":[
+        {
+            "id":1,
+            "name": "هندزفری بلوتوثی ورزشی القایی پاورولوژی مدل Powerology Pwlau008",
+            "category": ["هندزفری","بلوتوث","دو گوش"],
+            "path": "/public/products/0088-1.jpg",
+            "discount":"10",
+            "price": "2850"
+        },
+        {
+            "id":1,
+            "name": "هندزفری بلوتوثی ورزشی القایی پاورولوژی مدل Powerology Pwlau008",
+            "category": ["هندزفری","بلوتوث","دو گوش"],
+            "path": "/public/products/0088-1.jpg",
+            "discount":"10",
+            "price": "2850"
+        },
+        {
+            "id":1,
+            "name": "هندزفری بلوتوثی ورزشی القایی پاورولوژی مدل Powerology Pwlau008",
+            "category": ["هندزفری","بلوتوث","دو گوش"],
+            "path": "/public/products/0088-1.jpg",
+            "discount":"10",
+            "price": "2850"
+        },
+        {
+            "id":1,
+            "name": "هندزفری بلوتوثی ورزشی القایی پاورولوژی مدل Powerology Pwlau008",
+            "category": ["هندزفری","بلوتوث","دو گوش"],
+            "path": "/public/products/0088-1.jpg",
+            "discount":"10",
+            "price": "2850"
+        },
+        {
+            "id":1,
+            "name": "هندزفری بلوتوثی ورزشی القایی پاورولوژی مدل Powerology Pwlau008",
+            "category": ["هندزفری","بلوتوث","دو گوش"],
+            "path": "/public/products/0088-1.jpg",
+            "discount":"10",
+            "price": "2850"
+        },
+        {
+            "id":1,
+            "name": "هندزفری بلوتوثی ورزشی القایی پاورولوژی مدل Powerology Pwlau008",
+            "category": ["هندزفری","بلوتوث","دو گوش"],
+            "path": "/public/products/0088-1.jpg",
+            "discount":"10",
+            "price": "2850"
+        },
+        {
+            "id":1,
+            "name": "هندزفری بلوتوثی ورزشی القایی پاورولوژی مدل Powerology Pwlau008",
+            "category": ["هندزفری","بلوتوث","دو گوش"],
+            "path": "/public/products/0088-1.jpg",
+            "discount":"10",
+            "price": "2850"
+        },
+        {
+            "id":1,
+            "name": "هندزفری بلوتوثی ورزشی القایی پاورولوژی مدل Powerology Pwlau008",
+            "category": ["هندزفری","بلوتوث","دو گوش"],
+            "path": "/public/products/0088-1.jpg",
+            "discount":"10",
+            "price": "2850"
+        }
+    ]
+
+}

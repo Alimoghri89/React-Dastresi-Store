@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  @font-face {
+    font-family: 'shabnam-medium';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(../public/Fonts/Shabnam-Medium-FD.woff) format('woff');
+  }
+  @font-face {
+    font-family: 'shabnam-bold';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(../public/Fonts/Shabnam-Bold-FD.woff) format('woff');
+  }
+  body {
+    @apply bg-light_gray;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    
+  }
+}
+input[type="file"]::file-selector-button {
+background-color: #777777;
+}
+
+
