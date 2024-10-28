@@ -151,7 +151,7 @@
             "name": "هندزفری بلوتوثی ورزشی القایی پاورولوژی مدل Powerology Pwlau008",
             "category": ["هندزفری","بلوتوث","دو گوش"],
             "path": "/public/products/0088-1.jpg",
-            "discount":"10",
+            "discount":"60",
             "price": "2850"
         },
         {
@@ -159,7 +159,7 @@
             "name": "هندزفری بلوتوثی ورزشی القایی پاورولوژی مدل Powerology Pwlau008",
             "category": ["هندزفری","بلوتوث","دو گوش"],
             "path": "/public/products/0088-1.jpg",
-            "discount":"10",
+            "discount":"32",
             "price": "2850"
         },
         {
@@ -167,7 +167,7 @@
             "name": "هندزفری بلوتوثی ورزشی القایی پاورولوژی مدل Powerology Pwlau008",
             "category": ["هندزفری","بلوتوث","دو گوش"],
             "path": "/public/products/0088-1.jpg",
-            "discount":"10",
+            "discount":"30",
             "price": "2850"
         },
         {
@@ -175,7 +175,7 @@
             "name": "هندزفری بلوتوثی ورزشی القایی پاورولوژی مدل Powerology Pwlau008",
             "category": ["هندزفری","بلوتوث","دو گوش"],
             "path": "/public/products/0088-1.jpg",
-            "discount":"10",
+            "discount":"25",
             "price": "2850"
         },
         {
@@ -183,7 +183,7 @@
             "name": "هندزفری بلوتوثی ورزشی القایی پاورولوژی مدل Powerology Pwlau008",
             "category": ["هندزفری","بلوتوث","دو گوش"],
             "path": "/public/products/0088-1.jpg",
-            "discount":"10",
+            "discount":"15",
             "price": "2850"
         },
         {
@@ -191,7 +191,7 @@
             "name": "هندزفری بلوتوثی ورزشی القایی پاورولوژی مدل Powerology Pwlau008",
             "category": ["هندزفری","بلوتوث","دو گوش"],
             "path": "/public/products/0088-1.jpg",
-            "discount":"10",
+            "discount":null,
             "price": "2850"
         },
         {
@@ -199,7 +199,7 @@
             "name": "هندزفری بلوتوثی ورزشی القایی پاورولوژی مدل Powerology Pwlau008",
             "category": ["هندزفری","بلوتوث","دو گوش"],
             "path": "/public/products/0088-1.jpg",
-            "discount":"10",
+            "discount":null,
             "price": "2850"
         },
         {
@@ -210,6 +210,153 @@
             "discount":"10",
             "price": "2850"
         }
+    ],
+    "electedCategory":[
+        {
+            "id":1,
+            "name": "هندزفری",
+            "alt": "هندزفری",
+            "path": "/public/electedCategory/handsfree.png"
+        },
+        {
+            "id":2,
+            "name": "آداپتور",
+            "alt": "آداپتور",
+            "path": "/public/electedCategory/adaptor.png"
+        },
+        {
+            "id":3,
+            "name": "باتری",
+            "alt": "باتری",
+            "path": "/public/electedCategory/battery.png"
+        },
+        {
+            "id":4,
+            "name": "کابل",
+            "alt": "کابل",
+            "path": "/public/electedCategory/cable.png"
+        },
+        {
+            "id":5,
+            "name": "گیمینگ",
+            "alt": "گیمینگ",
+            "path": "/public/electedCategory/gaming.png"
+        },
+        {
+            "id":6,
+            "name": "هولدر",
+            "alt": "هولدر",
+            "path": "/public/electedCategory/Holder Negahdarande.png"
+        },
+        {
+            "id":7,
+            "name": "مبدل",
+            "alt": "مبدل",
+            "path": "/public/electedCategory/mobadel o rabet.png"
+        },
+        {
+            "id":8,
+            "name": "پاوربانک",
+            "alt": "پاوربانک",
+            "path": "/public/electedCategory/powerbank.png"
+        }
+    ],
+    "popularBrands":[
+        {
+            "id":1,
+            "name": "powerology",
+            "alt": "پاورولوژی",
+            "path": "/public/brandsLogo/powerology.jpg"
+        },
+        {
+            "id":2,
+            "name": "camelion",
+            "alt": "کاملیون",
+            "path": "/public/brandsLogo/camelion.jpg"
+        },
+        {
+            "id":3,
+            "name": "dieHard",
+            "alt": "دای هارد",
+            "path": "/public/brandsLogo/dieHard.jpg"
+        },
+        {
+            "id":4,
+            "name": "inoben",
+            "alt": "اینو بن",
+            "path": "/public/brandsLogo/inoben.jpg"
+        },
+        {
+            "id":5,
+            "name": "macdodo",
+            "alt": "مکدودو",
+            "path": "/public/brandsLogo/macdodo.jpg"
+        },
+        {
+            "id":6,
+            "name": "naztech",
+            "alt": "نزتک",
+            "path": "/public/brandsLogo/naztech.jpg"
+        },
+        {
+            "id":7,
+            "name": "proOne",
+            "alt": "پرو وان",
+            "path": "/public/brandsLogo/proOne.jpg"
+        },
+        {
+            "id":8,
+            "name": "ravpower",
+            "alt": "روپاور",
+            "path": "/public/brandsLogo/ravpower.jpg"
+        },
+        {
+            "id":9,
+            "name": "anker",
+            "alt": "انکر",
+            "path": "./public/brandsLogo/anker.jpg"
+        }
+    ],
+    "blogsPosts" :[
+        {
+            "id": "1",
+            "title": "شارژر وایرلس اپل چگونه کار میکند؟",
+            "path" : "/public/blogs/How-does-a-wireless-charger-work-dastresi-Artboard 1.jpg"
+        },
+        {
+            "id": "2",
+            "title": "چرا باید از ماساژور چشم استفاده کنید؟",
+            "path" : "/public/blogs/eye-massager-dastresi-Artboard 1 copy 3.jpg"
+        },
+        {
+            "id": "3",
+            "title": "بهترین فروشگاه لوازم جانبی تهران ",
+            "path" : "/public/blogs/List-of-mobile-accessories-dastresi-Artboard 1 copy.jpg"
+        },
+        {
+            "id": "4",
+            "title": "تفاوت هدفون و هدست و هندزفری در چیست؟",
+            "path" : "/public/blogs/handsfree-and-headset-dastresiArtboard 1.jpg"
+        },
+        {
+            "id": "5",
+            "title": "اطلاعات کامل درباره تکنولوژی hi-fi ",
+            "path" : "/public/blogs/high-fidelity-technology-dastresi-Artboard 1 copy.jpg"
+        },
+        {
+            "id": "6",
+            "title": "بهترین پاوربانک پاورولوژی + ۵ مدل از با کیفیت ترین ها",
+            "path" : "/public/blogs/best-powerology-power-bank-dastresiArtboard 1 copy 2.jpg"
+        },
+        {
+            "id": "7",
+            "title": "کامل ترین لیست لوازم جانبی موبایل برای مغازه",
+            "path" : "/public/blogs/List-of-mobile-accessories-dastresi-Artboard 1 copy.jpg"
+        },
+        {
+            "id": "8",
+            "title": "راهنمای تشخیص شارژر اصلی آیفون و بهترین جایگزین‌ها",
+            "path" : "/public/blogs/fake-or-original-iphone-charger-dastresi-Artboard 1.jpg"
+        }
     ]
-
 }

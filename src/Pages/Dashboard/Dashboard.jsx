@@ -7,14 +7,20 @@ import WebStoriesIcon from "@mui/icons-material/WebStories";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import WidgetsIcon from "@mui/icons-material/Widgets";
 import PhotoFilterIcon from "@mui/icons-material/PhotoFilter";
-import { Link } from "react-router-dom"; 
+import { Link, NavLink } from "react-router-dom"; 
 import RouterDashboard from "../../Components/RouterDashboard/RouterDashboard";
+import { Provider } from "react-redux";
+import store  from "../../Redux/Store";
+import CategoryIcon from '@mui/icons-material/Category';
 
 const Dashboard = () => {
+  
   return (
-    <div className="flex flex-col bg-dark_blue">
+    <Provider store = {store}>
+      <div className="flex flex-col bg-dark_blue">
       <div className="w-full h-[60px] flex items-center px-8 justify-between">
         <div className="w-auto flex flex-row gap-8">
+          
           <Link
             to="/dashboard/notifications"
             className="flex flex-col relative group"
@@ -40,36 +46,58 @@ const Dashboard = () => {
       </div>
       <div className="flex flex-row-reverse">
         <div className="w-[100px] lg:w-[300px] bg-dark_blue h-[calc(100vh-60px)] self-end flex flex-col py-28 items-center divide-y-[1px]">
-          <Link
+          <NavLink
             to="/dashboard/mainslider"
-            className="w-full py-4 px-4 text-white text-[20px] font-shabnam-bold flex flex-row-reverse items-center justify-between gap-4 transition-all duration-300 hover:bg-medium_gray hover:text-dark_blue"
+            className={(navDate)=>navDate.isActive? "w-full py-4 px-4 text-dark_blue text-[20px] font-shabnam-bold flex flex-row-reverse items-center justify-between gap-4 transition-all duration-300 bg-light_gray hover:text-dark_blue"
+              :
+              "w-full py-4 px-4 text-white text-[20px] font-shabnam-bold flex flex-row-reverse items-center justify-between gap-4 transition-all duration-300 hover:bg-medium_gray hover:text-dark_blue"
+            }
           >
             <div className="flex gap-2 items-center">
               <span className="hidden lg:block">اسلایدر اصلی</span>
               <WebStoriesIcon fontSize="large" />
             </div>
             <ArrowLeftIcon />
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/dashboard/products"
-            className="w-full py-4 px-4 text-white text-[20px] font-shabnam-bold flex flex-row-reverse items-center justify-between gap-4 transition-all duration-300 hover:bg-medium_gray hover:text-dark_blue"
+            className={(navDate)=>navDate.isActive? "w-full py-4 px-4 text-dark_blue text-[20px] font-shabnam-bold flex flex-row-reverse items-center justify-between gap-4 transition-all duration-300 bg-light_gray hover:text-dark_blue"
+              :
+              "w-full py-4 px-4 text-white text-[20px] font-shabnam-bold flex flex-row-reverse items-center justify-between gap-4 transition-all duration-300 hover:bg-medium_gray hover:text-dark_blue"
+            }
           >
             <div className="flex gap-2 items-center">
               <span className="hidden lg:block" >محصولات</span>
               <WidgetsIcon fontSize="large" />
             </div>
             <ArrowLeftIcon />
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
+            to="/dashboard/category"
+            className={(navDate)=>navDate.isActive? "w-full py-4 px-4 text-dark_blue text-[20px] font-shabnam-bold flex flex-row-reverse items-center justify-between gap-4 transition-all duration-300 bg-light_gray hover:text-dark_blue"
+              :
+              "w-full py-4 px-4 text-white text-[20px] font-shabnam-bold flex flex-row-reverse items-center justify-between gap-4 transition-all duration-300 hover:bg-medium_gray hover:text-dark_blue"
+            }
+          >
+            <div className="flex gap-2 items-center">
+              <span className="hidden lg:block" >دسته بندی ها</span>
+              <CategoryIcon fontSize="large" />
+            </div>
+            <ArrowLeftIcon />
+          </NavLink>
+          <NavLink
             to="/dashboard/brands"
-            className="w-full py-4 px-4 text-white text-[20px] font-shabnam-bold flex flex-row-reverse items-center justify-between gap-4 transition-all duration-300 hover:bg-medium_gray hover:text-dark_blue"
+            className={(navDate)=>navDate.isActive? "w-full py-4 px-4 text-dark_blue text-[20px] font-shabnam-bold flex flex-row-reverse items-center justify-between gap-4 transition-all duration-300 bg-light_gray hover:text-dark_blue"
+              :
+              "w-full py-4 px-4 text-white text-[20px] font-shabnam-bold flex flex-row-reverse items-center justify-between gap-4 transition-all duration-300 hover:bg-medium_gray hover:text-dark_blue"
+            }
           >
             <div className="flex gap-2 items-center">
               <span className="hidden lg:block">برند ها</span>
               <PhotoFilterIcon fontSize="large" />
             </div>
             <ArrowLeftIcon />
-          </Link>
+          </NavLink>
         </div>
         <div className="w-[calc(100vw-100px)] lg:w-[calc(100vw-300px)]  h-[calc(100vh-60px)] bg-light_gray  rounded-se-2xl ">
           <RouterDashboard/>
@@ -78,6 +106,7 @@ const Dashboard = () => {
         
       </div>
     </div>
+    </Provider>
   );
 };
 

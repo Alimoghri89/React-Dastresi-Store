@@ -1,53 +1,70 @@
-import React from "react";
+import React,{useEffect} from "react";
 import MainSlider from "../../Components/MainSlider/MainSlider";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import useSWR, { useSWRConfig } from "swr";
 import BackupIcon from "@mui/icons-material/Backup";
+import {setMainSlider,setLoading,setError} from "../../Redux/MainSlider/ActionMainSlider"
+import { useDispatch, useSelector } from "react-redux";
+import { useSWRConfig } from "swr";
+import axios from "axios";
 const EditMainSlider = () => {
-  const { url } = useSWRConfig();
-  const { data, error, isLoading } = useSWR(url);
+  const { url} = useSWRConfig();
+    const {mainSlider:data,loading,error}=useSelector(state=>state.MainSlider);
+    const dispatch = useDispatch()
+    const fetchMainSlider = async () => {
+      try{
+        dispatch(setLoading(false));
+        let res = await axios.get(`../${url}`);
+        dispatch(setMainSlider(res.data));
+      }catch{
+        dispatch(setError(error.message));
+        dispatch(setLoading(true))
+      }
+    }
+    useEffect(()=>{
+      fetchMainSlider();
+    },[])
   return (
     <div className="w-[calc(100vw-100px)] lg:w-[calc(100vw-300px)] h-[calc(100vh-60px)] bg-light_gray  rounded-se-2xl flex flex-col  items-center gap-2 p-1 lg:p-2">
       <div className="w-full h-[60%]  flex flex-col justify-around items-center gap-2" >
       <div className=" w-[100%] lg:w-[60%] h-fit shadow-md shadow-black/25 rounded-2xl overflow-hidden">
         <MainSlider />
       </div>
-      <div className=" w-full lg:w-[60%] flex flex-col items-center  h-auto  overflow-hidden  rounded-2xl border-2 border-dark_gray" dir="rtl">
-        <div className=" w-full bg-medium_gray  flex px-1 lg:p-0 lg:justify-center items-center    ">
-          <AddBoxIcon className="text-dark_green" fontSize="medium" />
-          <span className="font-shabnam-medium self-center text-dark_gray">
+      <div className=" w-full lg:w-[60%] flex flex-col items-center  h-auto  overflow-hidden  rounded-2xl border-2 border-black" dir="rtl">
+        <div className=" w-full bg-dark_gray  flex px-1 lg:p-0 lg:justify-center items-center    ">
+          <AddBoxIcon className="text-white" fontSize="medium" />
+          <span className="font-shabnam-medium self-center text-white">
             اضافه کردن عکس به اسلایدر
           </span>
         </div>
-        <form className="w-full item-center flex flex-col p-2 gap-4">
+        <form className="w-full item-center flex flex-col p-2 gap-4 bg-medium_gray">
           <div className="flex lg:flex-row flex-col  gap-2">
             <div className="flex items-center justify-between font-shabnam-bold w-full gap-1">
-              <label className="text-nowrap text-dark_blue" htmlFor="fileName">
+              <label className="text-nowrap text-dark_gray" htmlFor="fileName">
                 نام عکس
               </label>
               <input
                 type="text"
                 name="fileName"
-                className="rounded-md h-full lg:w-full w-[50%] bg-soft_gray"
+                className="rounded-md h-full lg:w-full w-[50%] "
               />
             </div>
             <div className="flex items-center justify-between font-shabnam-bold w-full gap-1">
-              <label className="text-nowrap text-dark_blue" htmlFor="fileAlt">
+              <label className="text-nowrap text-dark_gray" htmlFor="fileAlt">
                 نام جایگزین
               </label>
               <input
                 type="text"
                 name="fileAlt"
-                className="rounded-md h-full w-[50%] lg:w-full bg-soft_gray"
+                className="rounded-md h-full w-[50%] lg:w-full"
               />
             </div>
           </div>
           <div className=" flex gap-2">
             <input
               type="file"
-              className="rounded-md h-full w-full bg-soft_gray"
+              className="rounded-md h-full w-full bg-white"
             />
             <button>
               <BackupIcon className="text-dark_blue" fontSize="large" />
@@ -77,9 +94,8 @@ const EditMainSlider = () => {
                 </tr>
               </thead>
               <tbody>
-                {data?.mainSlider.map((item, index) => {
+                {data?.mainSlider?.map((item, index) => {
                   return (
-                    <>
                       <tr
                         className="border-b-2 border-b-dark_gray  odd:text-dark_blue even:bg-soft_gray even:text-white"
                         key={index}
@@ -104,7 +120,6 @@ const EditMainSlider = () => {
                           <DeleteForeverIcon className=" text-light_red hover:text-dark_red cursor-pointer" />
                         </td>
                       </tr>
-                    </>
                   );
                 })}
               </tbody>
