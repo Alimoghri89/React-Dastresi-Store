@@ -244,13 +244,13 @@
   ],
   "products": [
     {
-      "id": "4989",
       "name": "شارژر دیواری 20 واتی انکر مدل Anker A2347L21",
       "alt": "Anker A2347L21",
       "path": "/public/products/2347-11.jpg",
-      "discount": "11",
+      "discount": "16",
       "price": "747000",
-      "category": "آداپتور و شارژر"
+      "category": "آداپتور و شارژر",
+      "id": "4989"
     },
     {
       "id": "ea41",
@@ -280,13 +280,13 @@
       "category": "هولدر و نگهدارنده"
     },
     {
-      "id": "3a34",
-      "name": "",
-      "alt": "",
+      "name": "رابط برق USB دار 3250 واتی گرین مدل Green Lion GNMPTLAD4W ",
+      "alt": " Green Lion GNMPTLAD4W ",
       "path": "/public/products/gnmptlad4w-11.jpg",
       "discount": "5",
       "price": "585000",
-      "category": "انواع رابط و تبدیل"
+      "category": "انواع رابط و تبدیل",
+      "id": "3a34"
     },
     {
       "id": "0d20",
@@ -325,13 +325,13 @@
       "category": "انواع هاب"
     },
     {
-      "id": "604e",
       "name": "پاوربانک 60000 میلی آمپر گرین Power Major مدل Green Lion GNMPB60K",
       "alt": "Green Lion GNMPB60K",
       "path": "/public/products/GNMPB60KBK-11.jpg",
       "discount": "",
       "price": "",
-      "category": "پاور بانک و جامپر استارتر"
+      "category": "پاور بانک و جامپر استارتر",
+      "id": "604e"
     }
   ],
   "electedCategory": [
@@ -378,10 +378,10 @@
       "path": "/public/electedCategory/mobadel o rabet.png"
     },
     {
-      "id": "4504",
       "name": "پاور بانک و جامپر استارتر",
       "alt": "پاور بانک و جامپر استارتر",
-      "path": "/public/electedCategory/powerbank.png"
+      "path": "/public/electedCategory/powerbank.png",
+      "id": "d4e9"
     }
   ],
   "popularBrands": [

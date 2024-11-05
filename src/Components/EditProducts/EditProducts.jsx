@@ -36,12 +36,13 @@ const EditProducts = () => {
   const handleEditIconClick = (product) => {
     setName(product.name);
     setAltName(product.alt);
-    setFileName(product.path.split("/").pop()); // Get the file name from the path
+    setFileName(product.path); 
     setDiscount(product.discount);
     setPrice(product.price);
     setProductCategory(product.category);
     setEditMode(true);
     setEditingProductId(product.id);
+    console.log("id:", editingProductId, "name:",name,"alt:",altName,"category:",productCategory,"fileName:",fileName,"discount:",discount,"price:",price)
   };
 
   const[name,setName] = useState("")
@@ -49,12 +50,27 @@ const EditProducts = () => {
   const[fileName,setFileName] = useState("")
   const[discount,setDiscount] = useState("")
   const[price,setPrice] = useState("")
-  const [file, setFile] = useState(null);
+  const[file, setFile] = useState(null);
   const[productCategory,setProductCategory] = useState("default")
   const submitHandler = (e)=>{
     if (editMode){
       e.preventDefault()
-      handleEdit
+      handleEdit(editingProductId,{
+        name: name,
+        alt: altName,
+        path: fileName,
+        discount:  discount,
+        price:  price,
+        category: productCategory
+      })
+      setName("");
+      setAltName("");
+      setFile(null);
+      setDiscount("");
+      setPrice("");
+      setProductCategory("default");
+      setEditMode(false);
+      setEditingProductId("");
     }else{
       e.preventDefault()
       console.log("name:",name,"alt:",altName,"category:",productCategory,"fileName:",fileName,"discount:",discount,"price:",price)
@@ -256,7 +272,9 @@ const EditProducts = () => {
                       />
                     </td>
                     <td className="text-center">
-                      <EditIcon className=" hover:text-light_red cursor-pointer" />
+                      <EditIcon 
+                      onClick={()=>handleEditIconClick(item)}
+                      className=" hover:text-light_red cursor-pointer" />
                     </td>
                     <td className="text-center ">
                       <DeleteForeverIcon 

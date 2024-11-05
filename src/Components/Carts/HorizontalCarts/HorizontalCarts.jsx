@@ -31,18 +31,18 @@ const HorizontalCarts = ({ product }) => {
             {name}
           </span>
         </div>
-        <div className="h-full flex flex-col justify-between">
+        <div className="h-full flex flex-col justify-between md:justify-around lg:justify-between">
           {discount ? (
-            <div className="flex justify-between ">
+            <div className="flex flex-col-reverse items-center justify-between ">
               <div className="flex flex-row-reverse gap-1 items-center  text-light_red">
-                <span className="font-shabnam-medium text-md md:text-xl lg:text-[12px]">
+                <span className="font-shabnam-medium text-sm md:text-xl lg:text-sm">
                   {discountAmount}
                 </span>
-                <span className="font-shabnam-medium text-md md:text-xl lg:text-[12px]">
+                <span className="font-shabnam-medium text-sm md:text-xl lg:text-sm">
                   تومان تخفیف
                 </span>
               </div>
-              <span className="font-shabnam-medium line-through text-md md:text-xl lg:text-xl text-dark_gray">
+              <span className="font-shabnam-medium line-through text-sm md:text-2xl lg:text-sm text-dark_gray">
                 {mainPrice}
               </span>
             </div>

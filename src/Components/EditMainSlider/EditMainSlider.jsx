@@ -25,23 +25,45 @@ const EditMainSlider = () => {
   const handleEdit = (id, updatedData) => {
     dispatch(editMainSlider({ id, updatedData }));
   };
+
+  const [editMode, setEditMode] = useState(false)
+  const [editingSliderId, setEditingSliderId] = useState(null);
+
+  const handleEditIconClick = (Slider) => {
+    setFileName(Slider.path.split("/").pop())
+    setAltName(Slider.alt)
+    setName(Slider.name)
+    setEditMode(true);
+    setEditingSliderId(Slider.id);
+  };
+
   const dispatch = useDispatch();
-  const [fileName, setFileName] = useState([]);
+  const [fileName, setFileName] = useState("");
+  const [file, setFile] = useState(null);
   const [Name, setName] = useState("");
   const [altName, setAltName] = useState("");
+
   const submitHandler = (e) => {
     e.preventDefault();
-    handleAdd({
+    const sliderData = {
       name: Name,
       alt: altName,
       path: `/public/mainSlider/${fileName}`,
-    });
+    }
+    if(editMode){
+      handleEdit(editingSliderId, sliderData)
+    }else{
+      handleAdd(sliderData); 
+    }
     setName("");
     setAltName("");
+    setEditMode(false);
+    setEditingSliderId("");
+
   };
   useEffect(() => {
     dispatch(fetchMainSlider());
-  }, [fetchMainSlider]);
+  }, []);
   return (
     <div className="w-[calc(100vw-100px)] lg:w-[calc(100vw-300px)] h-[calc(100vh-60px)] bg-light_gray  rounded-se-2xl flex flex-col  items-center gap-2 p-2 lg:p-2">
       <div className="w-full h-[60%]  flex flex-col justify-around items-center gap-2">
@@ -97,7 +119,11 @@ const EditMainSlider = () => {
               <input
                 type="file"
                 className="rounded-md h-full w-full bg-white"
-                onChange={(e) => setFileName(e.target.files[0].name)}
+                key={file ? file.name : "empty"}
+                onChange={(e) => {
+                  setFileName(e.target.files[0].name);
+                  setFile(e.target.files[0]);
+                }}
               />
               <button>
                 <BackupIcon className="text-dark_blue" fontSize="large" />
@@ -147,7 +173,10 @@ const EditMainSlider = () => {
                         />
                       </td>
                       <td className="text-center">
-                        <EditIcon className=" hover:text-light_red cursor-pointer" />
+                        <EditIcon 
+                        className=" hover:text-light_red cursor-pointer"
+                        onClick={()=>handleEditIconClick(item)}
+                         />
                       </td>
                       <td className="text-center ">
                         <DeleteForeverIcon

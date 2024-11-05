@@ -4,8 +4,13 @@ import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import useSWR, { useSWRConfig } from "swr";
+import { useNavigate } from "react-router-dom";
 const MenuBar = () => {
   const { url } = useSWRConfig();
+  const navigate = useNavigate();
+  const handleButtonClick = () => {
+    navigate("/dashboard"); 
+  };
   const { data:menu, error, isLoading } = useSWR(`${url}/menu`);
   const { containerWidth, moblieMenuPosition, mobileMenuDeactive } =
     useSWRConfig();
@@ -23,7 +28,7 @@ const MenuBar = () => {
                 return (
                   <span
                     href="#"
-                    className="flex gap-2 h-full items-center hover:text-light_red duration-200 relative group transition-all text-nowrap cursor-cell"
+                    className="flex gap-2 h-full items-center hover:text-light_red duration-200 relative group transition-all text-nowrap cursor-default "
                     key={index}
                   >
                     <div>
@@ -99,7 +104,7 @@ const MenuBar = () => {
             } else {
               return (
                 <a
-                  href="#"
+                  href={item.title === "خانه"? "/home":"#"}
                   className="flex gap-2 h-full items-center hover:text-light_red duration-200  transition-all text-nowrap"
                   key={index}
                 >
@@ -243,8 +248,10 @@ const MenuBar = () => {
               })}
             </div>
             <div className="w-full py-4 px-4">
-              <button className="w-full h-[50px] rounded-[15px]  bg-navi_blue text-white font-shabnam-medium">
-                ورود به باشگاه مشتریان
+              <button 
+              onClick={handleButtonClick}
+              className="w-full h-[50px] rounded-[15px]  bg-navi_blue text-white font-shabnam-medium">
+                ورود به داشبورد
               </button>
             </div>
           </div>

@@ -33,12 +33,36 @@ const EditCategory = () => {
   const handleEdit = (id, updatedData) => {
     dispatch(editElectedCategory({ id, updatedData }));
   };
-  const[fileName,setFileName] = useState([])
+  const [editMode, setEditMode] = useState(false)
+  const [editingcategoryId, setEditingCategoryId] = useState(null);
+
+  const[fileName,setFileName] = useState("")
+  const[file, setFile] = useState(null);
   const[productCategory,setProductCategory] = useState("")
+
+  const handleEditIconClick = (category) => {
+    setProductCategory(category.name)
+    setFileName(category.path.split("/").pop())
+    setEditMode(true);
+    setEditingCategoryId(category.id);
+  };
   const submitHandler = (e)=>{
     e.preventDefault()
-    console.log(fileName,productCategory)
-    handleAdd({"name": productCategory, "alt":productCategory, "path": `/public/electedCategory/${fileName}`})
+    const categoryData = {
+      name: productCategory,
+      alt: productCategory,
+      path: `/public/electedCategory/${fileName}`,
+    };
+   if(editMode){
+    handleEdit(editingcategoryId,categoryData)
+   }else{
+
+    handleAdd(categoryData)
+
+   }
+   setEditMode(false)
+   setProductCategory("");
+   setFile(null);
   }
   const dispatch = useDispatch();
 
@@ -54,8 +78,8 @@ const EditCategory = () => {
           <ElectedCategory />
         </div>
         <form action="#" method="post" onSubmit={submitHandler}>
-          <div className="w-full border-2  h-[40vh] md:h-fit overflow-hidden bg-medium_gray border-black rounded-2xl">
-            <div className="w-full py-1 bg-dark_gray flex gap-2  justify-center items-center ">
+          <div className="w-full border-2   h-fit overflow-hidden bg-medium_gray border-black rounded-2xl ">
+            <div className="w-full py-1 bg-dark_gray flex gap-2  justify-center items-center  ">
               <span className="font-shabnam-bold text-white text-sm lg:text-xl">
                 اضافه کردن دسته بندی منتخب
               </span>
@@ -77,8 +101,12 @@ const EditCategory = () => {
                 <input
                   type="file"
                   name="file"
+                  key={file ? file.name : "empty"}
                   className="rounded-lg bg-white w-[70%] h-[40px] lg:w-full lg:h-auto border-[1px] border-black "
-                  onChange={(e)=>setFileName(e.target.files[0].name)}
+                  onChange={(e)=>{
+                    setFileName(e.target.files[0].name);
+                    setFile(e.target.files[0]);
+                  }}
                 />
               </div>
               <div className="flex gap-2 h-[40px] lg:h-auto flex-row lg:flex-col justify-between items-center">
@@ -90,6 +118,7 @@ const EditCategory = () => {
                 </label>
                 <select
                   name="category"
+                  value={productCategory}
                   className="text-dark_gray font-shabnam-medium rounded-lg w-[70%] h-[40px] lg:w-full lg:h-auto border-[1px] border-black"
                   onChange={(e)=>setProductCategory(e.target.value )}
                 >
@@ -160,7 +189,9 @@ const EditCategory = () => {
                         />
                       </td>
                       <td className="text-center">
-                        <EditIcon className=" hover:text-light_red cursor-pointer" />
+                        <EditIcon 
+                        onClick={()=>handleEditIconClick(item)}
+                        className=" hover:text-light_red cursor-pointer" />
                       </td>
                       <td className="text-center ">
                         <DeleteForeverIcon
