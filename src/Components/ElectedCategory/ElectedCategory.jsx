@@ -8,8 +8,7 @@ import { Pagination, Autoplay, Navigation } from "swiper/modules";
 import useSWR, { useSWRConfig } from "swr";
 const ElectedCategory = () => {
   const { url } = useSWRConfig();
-  const { data, error, isLoading } = useSWR(url);
-
+  const { data:electedCategory, error, isLoading } = useSWR(`${url}/electedCategory`);
   return (
       <Swiper
         navigation-next-el=".custom-next-button"
@@ -53,7 +52,7 @@ const ElectedCategory = () => {
         modules={[Pagination, Autoplay, Navigation]}
         className="mySwiper"
       >
-        {data?.electedCategory.map((item, index) => {
+        {electedCategory?.map((item, index) => {
           return (
             <SwiperSlide
               key={index}

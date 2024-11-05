@@ -1,33 +1,76 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import { useSWRConfig } from "swr";
 import { useDispatch, useSelector } from "react-redux";
-import {setProducts,setLoading,setError,} from "../../Redux/Products/ActionProducts";
-import axios from "axios";
-const EditProducts = () => {
-  const { url } = useSWRConfig();
-  const {
-    products: data,
-    loading,
-    error,
-  } = useSelector((state) => state.Product);
-  const dispatch = useDispatch();
-  const fetchProducts = async () => {
-    try {
-      dispatch(setLoading(false));
-      let res = await axios.get("../../../db.json");
-      dispatch(setProducts(res.data));
-    } catch {
-      dispatch(setError(error.message));
-      dispatch(setLoading(true));
-    }
-  };
-  useEffect(() => {
-    fetchProducts();
-  }, []);
+import {
+  fetchProducts,
+  addProduct,
+  deleteProduct,
+  editProduct,
+} from "../../Redux/Products/ProductsSlice";
+import { fetchMenu } from "../../Redux/Menu/MenuSlice";
+import BackupIcon from "@mui/icons-material/Backup";
 
+const EditProducts = () => {
+  const { products, loading, error } = useSelector((state) => state.Products);
+  const dispatch = useDispatch();
+
+  const { menu } = useSelector((state) => state.Menu);
+
+  const handleAdd = (newProduct) => {
+    dispatch(addProduct(newProduct));
+  };
+
+  const handleDelete = (id) => {
+    console.log(id)
+    dispatch(deleteProduct(id));
+  };
+
+  const handleEdit = (id, updatedData) => {
+    dispatch(editProduct({ id, updatedData }));
+  };
+  const [editMode, setEditMode] = useState(false)
+  const [editingProductId, setEditingProductId] = useState(null);
+
+  const handleEditIconClick = (product) => {
+    setName(product.name);
+    setAltName(product.alt);
+    setFileName(product.path.split("/").pop()); // Get the file name from the path
+    setDiscount(product.discount);
+    setPrice(product.price);
+    setProductCategory(product.category);
+    setEditMode(true);
+    setEditingProductId(product.id);
+  };
+
+  const[name,setName] = useState("")
+  const[altName,setAltName] = useState("")
+  const[fileName,setFileName] = useState("")
+  const[discount,setDiscount] = useState("")
+  const[price,setPrice] = useState("")
+  const [file, setFile] = useState(null);
+  const[productCategory,setProductCategory] = useState("default")
+  const submitHandler = (e)=>{
+    if (editMode){
+      e.preventDefault()
+      handleEdit
+    }else{
+      e.preventDefault()
+      console.log("name:",name,"alt:",altName,"category:",productCategory,"fileName:",fileName,"discount:",discount,"price:",price)
+      handleAdd({"name": name, "alt":altName, "path": `/public/products/${fileName}`, "discount": discount,  "price": price, "category": productCategory});
+      setName("");
+      setAltName("");
+      setFile(null);
+      setDiscount("");
+      setPrice("");
+      setProductCategory("default");
+    }
+  }
+  useEffect(() => {
+    dispatch(fetchProducts());
+    dispatch(fetchMenu());
+  }, []);
   return (
     <div className="w-full  h-full bg-light_gray  rounded-se-2xl flex flex-col items-center justify-center gap-4  p-2 lg:p-16">
       <div className="w-full border-2 lg:h-[75vh] 2xl:h-fit overflow-hidden bg-medium_gray border-black rounded-2xl">
@@ -35,9 +78,17 @@ const EditProducts = () => {
           <span className="font-shabnam-bold text-white text-sm lg:text-xl">
             اضافه کردن محصول
           </span>
-          <div className="w-fit h-fit flex text-[20px] lg:text-[35px]"><AddBoxIcon fontSize="inherit" className="text-white" /></div>
+          <div className="w-fit h-fit flex text-[20px] lg:text-[35px]">
+            <AddBoxIcon fontSize="inherit" className="text-white" />
+          </div>
         </div>
-        <div dir="rtl" className="p-2   grid  grid-rows-6 grid-cols-1 lg:grid-rows-3 lg:grid-cols-2 2xl:grid-rows-1  2xl:grid-cols-6 gap-2">
+        <form
+          action="#"
+          method="post"
+          dir="rtl"
+          onSubmit={submitHandler}
+          className="p-2   grid  grid-rows-6 grid-cols-1 lg:grid-rows-3 lg:grid-cols-2 2xl:grid-rows-1  2xl:grid-cols-6 gap-2"
+        >
           <div className="flex gap-2 h-[40px] lg:h-auto flex-row lg:flex-col justify-between items-center   ">
             <label
               className="text-dark_gray font-shabnam-medium text-sm lg:text-lg lg:self-start"
@@ -45,7 +96,13 @@ const EditProducts = () => {
             >
               نام محصول
             </label>
-            <input type="text" name="fileName" className="rounded-lg w-[70%] h-[40px] lg:w-full lg:h-auto border-[1px] border-black" />
+            <input
+              type="text"
+              name="fileName"
+              value={name}
+              onChange={(e)=>setName(e.target.value)}
+              className="rounded-lg w-[70%] h-[40px] lg:w-full lg:h-auto border-[1px] border-black"
+            />
           </div>
           <div className="flex gap-2 h-[40px] lg:h-auto flex-row lg:flex-col  justify-between items-center ">
             <label
@@ -54,7 +111,13 @@ const EditProducts = () => {
             >
               نام جایگزین
             </label>
-            <input type="text" name="alt" className="rounded-lg w-[70%] h-[40px] lg:w-full lg:h-auto border-[1px] border-black" />
+            <input
+              type="text"
+              name="alt"
+              value={altName}
+              onChange={(e)=>setAltName(e.target.value)}
+              className="rounded-lg w-[70%] h-[40px] lg:w-full lg:h-auto border-[1px] border-black"
+            />
           </div>
           <div className="flex gap-2 h-[40px] lg:h-auto flex-row lg:flex-col justify-between items-center">
             <label
@@ -63,7 +126,16 @@ const EditProducts = () => {
             >
               عکس محصول
             </label>
-            <input type="file" name="file" className="rounded-lg bg-white w-[70%] h-[40px] lg:w-full lg:h-auto border-[1px] border-black " />
+            <input
+              type="file"
+              name="file"
+              key={file ? file.name : "empty"}
+              onChange={(e)=>{
+                setFileName(e.target.files[0].name);
+                setFile(e.target.files[0]);
+              }}
+              className="rounded-lg bg-white w-[70%] h-[40px] lg:w-full lg:h-auto border-[1px] border-black "
+            />
           </div>
           <div className="flex gap-2 h-[40px] lg:h-auto flex-row lg:flex-col justify-between items-center">
             <label
@@ -72,8 +144,14 @@ const EditProducts = () => {
             >
               دسته بندی محصول
             </label>
-            <select name="category" className="text-dark_gray font-shabnam-medium rounded-lg w-[70%] h-[40px] lg:w-full lg:h-auto border-[1px] border-black">
-              {data?.menu
+            <select
+              name="category"
+              value={productCategory}
+              onChange={(e)=>setProductCategory(e.target.value)}
+              className="text-dark_gray font-shabnam-medium rounded-lg w-[70%] h-[40px] lg:w-full lg:h-auto border-[1px] border-black"
+            >
+              <option>انتخاب کنید</option>
+              {menu
                 ?.map((item) =>
                   item.submenu !== undefined ? item.submenu : undefined
                 )
@@ -82,7 +160,7 @@ const EditProducts = () => {
                 .flatMap((item) => item)
                 .map((item, index) => {
                   return (
-                    <option key={index} value={item} >
+                    <option key={index} value={item}>
                       {item}
                     </option>
                   );
@@ -92,22 +170,40 @@ const EditProducts = () => {
           <div className="flex gap-2 h-[40px] lg:h-auto flex-row lg:flex-col   justify-between items-center">
             <label
               className="text-dark_gray font-shabnam-medium text-sm lg:text-lg lg:self-start"
-              htmlFor="discount" 
+              htmlFor="discount"
             >
               تخفیف محصول(٪)
             </label>
-            <input type="number" min={0} max={100} placeholder=" بین ۰ تا ۱۰۰ "  name="discount" className="rounded-lg bg-white w-[70%] h-[40px] lg:w-full lg:h-auto placeholder:text-center border-[1px] border-black" />
+            <input
+              type="number"
+              min={0}
+              max={100}
+              placeholder=" بین ۰ تا ۱۰۰ "
+              name="discount"
+              value={discount}
+              onChange={(e)=>setDiscount(e.target.value)}
+              className="rounded-lg bg-white w-[70%] h-[40px] lg:w-full lg:h-auto placeholder:text-center border-[1px] border-black"
+            />
           </div>
           <div className="flex gap-2 h-[40px] lg:h-auto flex-row lg:flex-col   justify-between items-center">
             <label
               className="text-dark_gray font-shabnam-medium text-sm lg:text-lg lg:self-start"
-              htmlFor="discount" 
+              htmlFor="price"
             >
               قیمت محصول(تومان)
             </label>
-            <input type="number" name="discount" className="rounded-lg bg-white w-[70%] h-[40px] lg:w-full lg:h-auto border-[1px] border-black" />
+            <div className="flex flex-row w-[70%] lg:w-full items-center gap-2 lg:gap-6">
+              <input
+                type="number"
+                name="price"
+                value={price}
+                onChange={(e)=>setPrice(e.target.value)}
+                className="rounded-lg bg-white  h-[40px] w-full lg:h-auto border-[1px] border-black"
+              />
+              <button><BackupIcon fontSize="large" className="text-dark_blue" /></button>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
       <div
         className="flex flex-col border-2 border-black rounded-2xl overflow-hidden w-full"
@@ -131,14 +227,14 @@ const EditProducts = () => {
               </tr>
             </thead>
             <tbody>
-              {data?.products?.map((item, index) => {
+              {products?.map((item, index) => {
                 return (
                   <tr
                     className="border-b-2 border-b-dark_gray  odd:text-dark_blue even:bg-soft_gray even:text-white"
                     key={index}
                   >
                     <td className="text-center font-shabnam-medium">
-                      {index+1}
+                      {index + 1}
                     </td>
                     <td className="text-center font-shabnam-medium min-w-[200px]">
                       {item.name}
@@ -163,7 +259,10 @@ const EditProducts = () => {
                       <EditIcon className=" hover:text-light_red cursor-pointer" />
                     </td>
                     <td className="text-center ">
-                      <DeleteForeverIcon className=" text-light_red hover:text-dark_red cursor-pointer" />
+                      <DeleteForeverIcon 
+                      onClick = {()=>handleDelete(item.id)}
+                      className=" text-light_red hover:text-dark_red cursor-pointer" 
+                      />
                     </td>
                   </tr>
                 );

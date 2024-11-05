@@ -7,9 +7,12 @@ import HorizontalCarts from "../Carts/HorizontalCarts/HorizontalCarts.jsx";
 const Discount = () => {
   const { containerWidth } = useSWRConfig();
   const { url } = useSWRConfig();
-  const { data, error, isLoading } = useSWR(url);
+  const { data:products, error, isLoading } = useSWR(`${url}/products`);
   if (!error && !isLoading) {
-    let discountProducts = data?.products.map(item=> (item.discount !== null? item: null)).filter((item,index) =>  item !== null && index < 5 );
+    // let discountProducts = products?.map(item=> (item.discount !== null ? item: null)).filter((item,index) =>  item !== null && index < 5 );
+    let discountProducts = products
+  ?.filter(item => item.discount !== null && item.discount !== "")
+  .slice(0, 5);
     return (
       <div
         className="bg-medium_gray p-4 md:p-8 flex flex-col gap-6 rounded-3xl"

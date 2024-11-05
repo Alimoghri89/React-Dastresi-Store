@@ -21,7 +21,9 @@ export default {
         light_red: "#FE5F54",
         dark_red : "#C7253E",
         dark_green: "#347928",
-        mainBody: "#FBFBFB"
+        mainBody: "#FBFBFB",
+        warning: "#FFF4F5",
+        danger: "#9B2C2C"
       },
       aspectRatio: {
         '16/9': '16 / 9',

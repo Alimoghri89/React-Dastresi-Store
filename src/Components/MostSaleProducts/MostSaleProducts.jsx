@@ -10,10 +10,9 @@ import useSWR, { useSWRConfig } from "swr";
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 const MostSaleProducts = () => {
   const { url } = useSWRConfig();
-  const { data, error, isLoading } = useSWR(url);
-
+  const { data:products, error, isLoading } = useSWR(`${url}/products`);
   return (
-    <div className=" p-4 md:p-8 bg-medium_gray flex flex-col gap-4">
+    <div className=" p-4 md:p-8 bg-medium_gray flex flex-col gap-4 h-[650px]">
         <div className=" flex items-center justify-between flex-col-reverse gap-2 md:gap-0 md:flex-row">
             <span className="flex items-center gap-2 text-dark_gray text-md font-shabnam-medium">
                 <div className="w-fit h-fit  rounded-lg border-2 border-dark_gray"><ArrowLeftIcon fontSize="small"/></div>
@@ -63,7 +62,7 @@ const MostSaleProducts = () => {
         modules={[Pagination, Autoplay, Navigation]}
         className="mySwiper"
       >
-        {data?.products.map((item, index) => {
+        {products?.map((item, index) => {
           return (
             <SwiperSlide
               key={index}
@@ -71,9 +70,10 @@ const MostSaleProducts = () => {
                 padding: "0px",
                 backgroundColor: "transparent",
                 borderRadius: "10px",
+                overflow: "hidden",
               }}
             >
-              <div>
+              <div className="w-full h-full">
                 <VerticalCarts product={item} />
               </div>
             </SwiperSlide>

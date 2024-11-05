@@ -6,7 +6,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import useSWR, { useSWRConfig } from "swr";
 const MenuBar = () => {
   const { url } = useSWRConfig();
-  const { data, error, isLoading } = useSWR(url);
+  const { data:menu, error, isLoading } = useSWR(`${url}/menu`);
   const { containerWidth, moblieMenuPosition, mobileMenuDeactive } =
     useSWRConfig();
   const [openIndex, setOpenIndex] = useState(null);
@@ -17,7 +17,7 @@ const MenuBar = () => {
     if (containerWidth > 1024) {
       return (
         <div className="menu w-full h-[30%]  text-dark_gray relative flex flex-row-reverse justify-between items-center transition-all z-10">
-          {data?.menu.map((item, index) => {
+          {menu?.map((item, index) => {
             if (item.submenu) {
               if (item.title !== "برند ها") {
                 return (
@@ -144,7 +144,7 @@ const MenuBar = () => {
               </a>
             </div>
             <div className="flex flex-col  w-full h-full overflow-y-scroll">
-              {data?.menu.map((item, index) => {
+              {menu?.map((item, index) => {
                 if (item.submenu) {
                   return (
                     <div key={index} dir="rtl">

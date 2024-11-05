@@ -1,3 +1,0 @@
-export const SET_ELECTEDCATEGORY = "SET_ELECTEDCATEGORY";
-export const SET_LOADING = "SET_LOADING";
-export const SET_ERROR = "SET_ERROR";

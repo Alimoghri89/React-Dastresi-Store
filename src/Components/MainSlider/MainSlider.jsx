@@ -8,7 +8,7 @@ import useSWR,{ useSWRConfig } from 'swr';
 
 const MainSlider = () => {
   const { url} = useSWRConfig();
-    const { data, error, isLoading } = useSWR(url);
+    const { data:mainSlider, error, isLoading } = useSWR(`${url}/mainSlider`);
     return (
         <>
           <Swiper
@@ -22,7 +22,7 @@ const MainSlider = () => {
             modules={[Pagination,Autoplay]}
             className="mySwiper"
           >
-            {data?.mainSlider.map((item,index)=>{
+            {mainSlider?.map((item,index)=>{
                 return (
                     <SwiperSlide key={index}><img className='w-full' src={`../../../${item.path}`} alt={item.alt} /></SwiperSlide>
                 )

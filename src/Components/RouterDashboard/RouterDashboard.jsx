@@ -1,20 +1,22 @@
-import React from 'react'
-import { Route, Routes } from 'react-router-dom'
-import EditMainSlider from '../EditMainSlider/EditMainSlider'
-import EditBrands from '../EditBrands/EditBrands'
-import EditProducts from '../EditProducts/EditProducts'
-import EditCategory from '../EditCategory/EditCategory'
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import EditMainSlider from "../EditMainSlider/EditMainSlider";
+import EditProducts from "../EditProducts/EditProducts";
+import EditCategory from "../EditCategory/EditCategory";
+import { Provider } from "react-redux";
+import store from "../../Redux/Store"
 
 const RouterDashboard = () => {
-  return (
-    <Routes>
-        <Route path = "/mainslider" element = {<EditMainSlider/>}/>
-        <Route path = "/products" element = {<EditProducts/>}/>
-        <Route path = "/category" element = {<EditCategory/>}/>
-        <Route path = "/brands" element = {<EditBrands/>}/>
-        
-    </Routes>
-  )
-}
 
-export default RouterDashboard
+  return (
+    <Provider store = {store} >
+      <Routes>
+        <Route path="/mainslider" element={<EditMainSlider />} />
+        <Route path="/products" element={<EditProducts />} />
+        <Route path="/category" element={<EditCategory />} />
+      </Routes>
+    </Provider>
+  );
+};
+
+export default RouterDashboard;

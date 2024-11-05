@@ -23,7 +23,7 @@ const SearchBar = () => {
             <div className="buttons flex gap-[10%] w-[20%]  h-full">
               <div className="register w-fit px-4  shadow-sm shadow-black/25 rounded-lg bg-dark_blue h-full">
                 <Link
-                  to = "dashboard"
+                  to = "/dashboard"
                   className="h-full w-full flex text-white justify-center items-center  text-nowrap"
                 >
                   ورود به داشبورد

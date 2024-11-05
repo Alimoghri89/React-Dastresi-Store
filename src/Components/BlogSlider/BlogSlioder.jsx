@@ -8,8 +8,7 @@ import { Autoplay} from "swiper/modules";
 import useSWR, { useSWRConfig } from "swr";
 const BlogSlider = () => {
   const { url } = useSWRConfig();
-  const { data, error, isLoading } = useSWR(url);
-
+  const { data:blogsPosts, error, isLoading } = useSWR(`${url}/blogsPosts`);
   return (
       <Swiper
         slidesPerView={1}
@@ -43,7 +42,7 @@ const BlogSlider = () => {
         modules={[Autoplay]}
         className="mySwiper"
       >
-        {data?.blogsPosts.map((item, index) => {
+        {blogsPosts?.map((item, index) => {
           return (
             <SwiperSlide
               key={index}

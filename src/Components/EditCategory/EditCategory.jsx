@@ -1,37 +1,50 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import BackupIcon from "@mui/icons-material/Backup";
 import {
-  setElectedCategory,
-  setLoading,
-  setError,
-} from "../../Redux/ElectedCategory/ActionElectedCategory";
+  fetchElectedCategory,
+  addElectedCategory,
+  deleteElectedCategory,
+  editElectedCategory,
+} from "../../Redux/ElectedCategory/ElectedCategorySlice";
+import {fetchMenu} from "../../Redux/Menu/MenuSlice"
 import { useDispatch, useSelector } from "react-redux";
-import { useSWRConfig } from "swr";
-import axios from "axios";
 import ElectedCategory from "../ElectedCategory/ElectedCategory";
+
 const EditCategory = () => {
-  const { url } = useSWRConfig();
   const {
-    electedCategory: data,
+    electedCategory,
     loading,
     error,
-  } = useSelector((state) => state.electedCategory);
-  const dispatch = useDispatch();
-  const fetchElectedCategory = async () => {
-    try {
-      dispatch(setLoading(false));
-      let res = await axios.get(`../${url}`);
-      dispatch(setElectedCategory(res.data));
-    } catch {
-      dispatch(setError(error.message));
-      dispatch(setLoading(true));
-    }
+  } = useSelector((state) => state.ElectedCategory);
+  const {
+    menu,
+  } = useSelector((state) => state.Menu);
+  const handleAdd = (newCategory) => {
+    dispatch(addElectedCategory(newCategory));
   };
+  
+  const handleDelete = (id) => {
+    dispatch(deleteElectedCategory(id));
+  };
+
+  const handleEdit = (id, updatedData) => {
+    dispatch(editElectedCategory({ id, updatedData }));
+  };
+  const[fileName,setFileName] = useState([])
+  const[productCategory,setProductCategory] = useState("")
+  const submitHandler = (e)=>{
+    e.preventDefault()
+    console.log(fileName,productCategory)
+    handleAdd({"name": productCategory, "alt":productCategory, "path": `/public/electedCategory/${fileName}`})
+  }
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    fetchElectedCategory();
+    dispatch(fetchElectedCategory());
+    dispatch(fetchMenu());
   }, []);
 
   return (
@@ -40,62 +53,71 @@ const EditCategory = () => {
         <div className=" w-[70%] md:w-full h-fit shadow-md shadow-black/25 rounded-2xl overflow-hidden">
           <ElectedCategory />
         </div>
-        <div className="w-full border-2  h-[40vh] md:h-fit overflow-hidden bg-medium_gray border-black rounded-2xl">
-          <div className="w-full py-1 bg-dark_gray flex gap-2  justify-center items-center">
-            <span className="font-shabnam-bold text-white text-sm lg:text-xl">
-              اضافه کردن دسته بندی منتخب
-            </span>
-            <div className="w-fit h-fit flex text-[20px] lg:text-[35px]">
-              <AddBoxIcon fontSize="inherit" className="text-white" />
+        <form action="#" method="post" onSubmit={submitHandler}>
+          <div className="w-full border-2  h-[40vh] md:h-fit overflow-hidden bg-medium_gray border-black rounded-2xl">
+            <div className="w-full py-1 bg-dark_gray flex gap-2  justify-center items-center ">
+              <span className="font-shabnam-bold text-white text-sm lg:text-xl">
+                اضافه کردن دسته بندی منتخب
+              </span>
+              <div className="w-fit h-fit flex text-[20px] lg:text-[35px]">
+                <AddBoxIcon fontSize="inherit" className="text-white" />
+              </div>
+            </div>
+            <div
+              dir="rtl"
+              className="p-2   grid  grid-rows-2 grid-cols-1 lg:grid-rows-1 lg:grid-cols-2  gap-2 x"
+            >
+              <div className="flex gap-2 h-[40px] lg:h-auto flex-row lg:flex-col justify-between items-center">
+                <label
+                  className="text-dark_gray font-shabnam-medium text-sm lg:text-lg lg:self-start"
+                  htmlFor="file"
+                >
+                  عکس محصول
+                </label>
+                <input
+                  type="file"
+                  name="file"
+                  className="rounded-lg bg-white w-[70%] h-[40px] lg:w-full lg:h-auto border-[1px] border-black "
+                  onChange={(e)=>setFileName(e.target.files[0].name)}
+                />
+              </div>
+              <div className="flex gap-2 h-[40px] lg:h-auto flex-row lg:flex-col justify-between items-center">
+                <label
+                  className="text-dark_gray font-shabnam-medium text-sm lg:text-lg lg:self-start"
+                  htmlFor="category"
+                >
+                  دسته بندی محصول
+                </label>
+                <select
+                  name="category"
+                  className="text-dark_gray font-shabnam-medium rounded-lg w-[70%] h-[40px] lg:w-full lg:h-auto border-[1px] border-black"
+                  onChange={(e)=>setProductCategory(e.target.value )}
+                >
+                  <option>لطفا انتخاب کنید</option>
+                  {menu
+                    ?.map((item) =>
+                      item.submenu !== undefined ? item.submenu : undefined
+                    )
+                    .filter(Boolean)
+                    .slice(0, -1)
+                    .flatMap((item) => item)
+                    .map((item, index) => {
+                      return (
+                        <option key={index} value={item}>
+                          {item}
+                        </option>
+                      );
+                    })}
+                </select>
+              </div>
+            </div>
+            <div className=" flex w-fit ml-4 mb-1  text-dark_blue">
+              <button >
+                <BackupIcon fontSize="large" />
+              </button>
             </div>
           </div>
-          <div
-            dir="rtl"
-            className="p-2   grid  grid-rows-2 grid-cols-1 lg:grid-rows-1 lg:grid-cols-2  gap-2"
-          >
-            <div className="flex gap-2 h-[40px] lg:h-auto flex-row lg:flex-col justify-between items-center">
-              <label
-                className="text-dark_gray font-shabnam-medium text-sm lg:text-lg lg:self-start"
-                htmlFor="file"
-              >
-                عکس محصول
-              </label>
-              <input
-                type="file"
-                name="file"
-                className="rounded-lg bg-white w-[70%] h-[40px] lg:w-full lg:h-auto border-[1px] border-black "
-              />
-            </div>
-            <div className="flex gap-2 h-[40px] lg:h-auto flex-row lg:flex-col justify-between items-center">
-              <label
-                className="text-dark_gray font-shabnam-medium text-sm lg:text-lg lg:self-start"
-                htmlFor="category"
-              >
-                دسته بندی محصول
-              </label>
-              <select
-                name="category"
-                className="text-dark_gray font-shabnam-medium rounded-lg w-[70%] h-[40px] lg:w-full lg:h-auto border-[1px] border-black"
-              >
-                {data?.menu
-                  ?.map((item) =>
-                    item.submenu !== undefined ? item.submenu : undefined
-                  )
-                  .filter(Boolean)
-                  .slice(0, -1)
-                  .flatMap((item) => item)
-                  .map((item, index) => {
-                    return (
-                      <option key={index} value={item}>
-                        {item}
-                      </option>
-                    );
-                  })}
-              </select>
-            </div>
-          </div>
-          <div className=" flex w-fit ml-4 mb-1  text-dark_blue"><BackupIcon fontSize="large"/></div>
-        </div>
+        </form>
       </div>
       <div
         className="flex flex-col gap-2 h-[40%] w-[100%]  lg:w-[60%]"
@@ -108,7 +130,7 @@ const EditCategory = () => {
                 <tr className="bg-dark_gray text-white font-shabnam-bold">
                   <th className="w-fit px-3 text-center text-nowrap">شماره</th>
                   <th className="w-fit px-3 text-center text-nowrap">
-                    نام فایل
+                     دسته بندی
                   </th>
                   <th className="w-fit px-3 text-center text-nowrap">
                     پیش نمایش
@@ -118,7 +140,7 @@ const EditCategory = () => {
                 </tr>
               </thead>
               <tbody>
-                {data?.electedCategory?.map((item, index) => {
+                {electedCategory?.map((item, index) => {
                   return (
                     <tr
                       className="border-b-2 border-b-dark_gray  odd:text-dark_blue even:bg-soft_gray even:text-white"
@@ -141,7 +163,10 @@ const EditCategory = () => {
                         <EditIcon className=" hover:text-light_red cursor-pointer" />
                       </td>
                       <td className="text-center ">
-                        <DeleteForeverIcon className=" text-light_red hover:text-dark_red cursor-pointer" />
+                        <DeleteForeverIcon
+                          onClick={() => handleDelete(item.id)}
+                          className=" text-light_red hover:text-dark_red cursor-pointer"
+                        />
                       </td>
                     </tr>
                   );

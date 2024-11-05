@@ -32,7 +32,7 @@ const Dashboard = () => {
             <ChatBubbleIcon className="text-white" fontSize="large" />
             <hr className="w-full border-2 absolute -bottom-[8px] right-0 transition-all duration-300 opacity-0 group-hover:opacity-100 rounded-sm" />
           </Link>
-          <Link to="/" className="flex flex-col relative group">
+          <Link to="/home" className="flex flex-col relative group">
             <HomeIcon className="text-white" fontSize="large" />
             <hr className="w-full border-2 absolute -bottom-[8px] right-0 transition-all duration-300 opacity-0 group-hover:opacity-100 rounded-sm" />
           </Link>
@@ -85,19 +85,7 @@ const Dashboard = () => {
             </div>
             <ArrowLeftIcon />
           </NavLink>
-          <NavLink
-            to="/dashboard/brands"
-            className={(navDate)=>navDate.isActive? "w-full py-4 px-4 text-dark_blue text-[20px] font-shabnam-bold flex flex-row-reverse items-center justify-between gap-4 transition-all duration-300 bg-light_gray hover:text-dark_blue"
-              :
-              "w-full py-4 px-4 text-white text-[20px] font-shabnam-bold flex flex-row-reverse items-center justify-between gap-4 transition-all duration-300 hover:bg-medium_gray hover:text-dark_blue"
-            }
-          >
-            <div className="flex gap-2 items-center">
-              <span className="hidden lg:block">برند ها</span>
-              <PhotoFilterIcon fontSize="large" />
-            </div>
-            <ArrowLeftIcon />
-          </NavLink>
+
         </div>
         <div className="w-[calc(100vw-100px)] lg:w-[calc(100vw-300px)]  h-[calc(100vh-60px)] bg-light_gray  rounded-se-2xl ">
           <RouterDashboard/>

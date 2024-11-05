@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import useSWR,{ SWRConfig } from "swr";
+import  {SWRConfig}  from "swr";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import  Home from "../Pages/Home/Home";
 import NotFound from "../Pages/NotFound/NotFound";
 import Dashboard  from "../Pages/Dashboard/Dashboard";
-import { Router } from "@mui/icons-material";
-import RouterDashboard from "../Components/RouterDashboard/RouterDashboard";
-
+import config from "../../config";
 function App() {
-  let url = "../../db.json"
+  let url = config.API
   const [moblieMenuPosition, setMoblieMenuPosition] = useState("-300px");
   const [containerWidth, setContainerWidh] = useState(
     window.innerWidth > 1640
@@ -34,15 +32,7 @@ function App() {
   const mobileMenuDeactive = () => {
     setMoblieMenuPosition("-300px");
   };
-  const handleDelete = async (API,target,id) => {
-    try {
-      await axios.delete(`${API}/${target}/${id}`);
-      window.alert('با موفقیت حذف گردیدش')
-      }catch (error) {
-      console.error('Error deleting the item:', error);
-      window.alert('خطا در حذف. مجددا تلاش کنید');
-    }
-  }
+  
   return (
     <SWRConfig
       value={{
@@ -56,7 +46,7 @@ function App() {
     >
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home/>}/>
+          <Route path="/home" element={<Home/>}/>
           <Route path="dashboard/*" element={<Dashboard/>}/>
           <Route path ="*" element={<NotFound/>}/>
         </Routes>

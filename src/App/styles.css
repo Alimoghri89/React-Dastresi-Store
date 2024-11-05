@@ -38,4 +38,9 @@
     height: 100%;
     object-fit: cover;
   }
-  
+  .swiper-button-prev,  .swiper-button-next{
+    width: 35px !important;
+    height: 35px !important;
+    border-radius: 15px;
+    background-color: rgb(180, 179, 179);
+  }

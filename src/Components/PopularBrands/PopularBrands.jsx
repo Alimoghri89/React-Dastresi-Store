@@ -8,8 +8,7 @@ import { Pagination, Autoplay, Navigation } from "swiper/modules";
 import useSWR, { useSWRConfig } from "swr";
 const PopularBrands = () => {
   const { url } = useSWRConfig();
-  const { data, error, isLoading } = useSWR(url);
-
+  const { data:popularBrands, error, isLoading } = useSWR(`${url}/popularBrands`);
   return (
       <Swiper
         navigation-next-el=".custom-next-button"
@@ -53,7 +52,7 @@ const PopularBrands = () => {
         modules={[Pagination, Autoplay, Navigation]}
         className="mySwiper"
       >
-        {data?.popularBrands.map((item, index) => {
+        {popularBrands?.map((item, index) => {
           return (
             <SwiperSlide
               key={index}
