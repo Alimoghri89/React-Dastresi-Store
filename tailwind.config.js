@@ -21,6 +21,9 @@ export default {
         light_red: "#FE5F54",
         dark_red : "#C7253E",
         dark_green: "#347928",
+        bronze : "#A64B23",
+        silver: "#969994",
+        golden: "#EDC12A",
         mainBody: "#FBFBFB",
         warning: "#FFF4F5",
         danger: "#9B2C2C"

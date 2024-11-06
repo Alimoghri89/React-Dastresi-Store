@@ -33,7 +33,7 @@ const HorizontalCarts = ({ product }) => {
         </div>
         <div className="h-full flex flex-col justify-between md:justify-around lg:justify-between">
           {discount ? (
-            <div className="flex flex-col-reverse items-center justify-between ">
+            <div className="flex flex-col-reverse items-end justify-between md:gap-8 lg:gap-0">
               <div className="flex flex-row-reverse gap-1 items-center  text-light_red">
                 <span className="font-shabnam-medium text-sm md:text-xl lg:text-sm">
                   {discountAmount}

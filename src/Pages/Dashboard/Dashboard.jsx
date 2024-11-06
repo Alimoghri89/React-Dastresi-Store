@@ -87,7 +87,7 @@ const Dashboard = () => {
           </NavLink>
 
         </div>
-        <div className="w-[calc(100vw-100px)] lg:w-[calc(100vw-300px)]  h-[calc(100vh-60px)] bg-light_gray  rounded-se-2xl ">
+        <div className="w-[calc(100vw-100px)] lg:w-[calc(100vw-300px)]  h-[calc(100vh-60px)] bg-light_gray  rounded-se-2xl">
           <RouterDashboard/>
         </div>
         

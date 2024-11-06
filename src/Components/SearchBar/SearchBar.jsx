@@ -5,7 +5,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import PersonIcon from "@mui/icons-material/Person";
 import MenuBar from "../MenuBar/MenuBar";
 import { useSWRConfig } from 'swr';
-import { Link } from "react-router-dom"; 
+import { Link, NavLink } from "react-router-dom"; 
 const SearchBar = () => {
   const { containerWidth,mobileMenuActive } = useSWRConfig();
   if (containerWidth > 1024) {
@@ -23,7 +23,7 @@ const SearchBar = () => {
             <div className="buttons flex gap-[10%] w-[20%]  h-full">
               <div className="register w-fit px-4  shadow-sm shadow-black/25 rounded-lg bg-dark_blue h-full">
                 <Link
-                  to = "/dashboard"
+                  to = "/dashboard/mainslider"
                   className="h-full w-full flex text-white justify-center items-center  text-nowrap"
                 >
                   ورود به داشبورد
@@ -55,12 +55,16 @@ const SearchBar = () => {
               </div>
 
               <div className="headLink w-auto h-full flex flex-row-reverse gap-4  items-center text-dark_gray/50 transition-all">
-                <a
-                  href="#"
-                  className="text-nowrap hover:text-black  duration-300"
+                <NavLink
+                  to={"/CustomerClub"}
+                  className={(navDate)=>navDate.isActive?
+                      "text-nowrap text-light_red  duration-300"
+                    :
+                      "text-nowrap hover:text-black  duration-300"
+                  }
                 >
                   باشگاه مشتریان
-                </a>
+                </NavLink>
                 <a
                   href="#"
                   className="text-nowrap hover:text-black duration-300"

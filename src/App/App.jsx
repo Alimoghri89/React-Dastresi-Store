@@ -7,6 +7,7 @@ import  Home from "../Pages/Home/Home";
 import NotFound from "../Pages/NotFound/NotFound";
 import Dashboard  from "../Pages/Dashboard/Dashboard";
 import config from "../../config";
+import CustomerClub from "../Pages/CustomerClub/CustomerClub";
 function App() {
   let url = config.API
   const [moblieMenuPosition, setMoblieMenuPosition] = useState("-300px");
@@ -48,6 +49,7 @@ function App() {
         <Routes>
           <Route path="/home" element={<Home/>}/>
           <Route path="dashboard/*" element={<Dashboard/>}/>
+          <Route path ="/CustomerClub" element={<CustomerClub/>}/>
           <Route path ="*" element={<NotFound/>}/>
         </Routes>
       </BrowserRouter>
