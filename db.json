@@ -236,10 +236,10 @@
       "path": "/public/mainSlider/banner-dastresi-4-min.png"
     },
     {
-      "id": "20b9",
-      "name": "jashnvare",
+      "name": "jashnvareh",
       "alt": "jashnvare",
-      "path": "/public/mainSlider/jashnvare.jpg"
+      "path": "/public/mainSlider/jashnvare.jpg",
+      "id": "d356"
     }
   ],
   "products": [

@@ -44,9 +44,9 @@ const MenuBar = () => {
                           className="hidden w-full h-fit  py-4 px-2 text-[12px] font-shabnam-medium text-dark_gray group-hover:flex hover:text-dark_blue duration-100 hover:bg-light_gray"
                           key={id}
                         >
-                          <a className=" h-full w-full" href="#">
+                          <NavLink className=" h-full w-full" to="#">
                             {elem}
-                          </a>
+                          </NavLink>
                         </li>
                       ))}
                     </ul>
@@ -75,8 +75,8 @@ const MenuBar = () => {
                             className="hidden w-full h-fit transition-all border-l border-r py-2 px-2 text-[10px] font-shabnam-medium text-dark_gray group-hover:flex hover:text-dark_blue  duration-300 hover:bg-light_gray"
                             key={id}
                           >
-                            <a
-                              href="#"
+                            <NavLink
+                              to="#"
                               className=" flex w-full h-full justify-between"
                             >
                               {elem?.map((brand, brandId) => (
@@ -84,7 +84,7 @@ const MenuBar = () => {
                                   {brand}
                                 </span>
                               ))}
-                            </a>
+                            </NavLink>
                           </li>
                         ))}
                       </ul>
@@ -93,7 +93,7 @@ const MenuBar = () => {
                         dir="rtl"
                       >
                         <div className=" hover:cursor-pointer hover:text-dark_blue w-fit">
-                          <a>مشاهده ی دیگر برند ها</a>
+                          <NavLink to="#">مشاهده ی دیگر برند ها</NavLink>
                           <NavigateBeforeIcon />
                         </div>
                       </div>
@@ -126,7 +126,7 @@ const MenuBar = () => {
           style={{ right: `${moblieMenuPosition}` }}
         >
           <div className="flex  flex-col items-center h-[100%] relative">
-            <button onClick={mobileMenuDeactive} className="mt-2 ml-2">
+            <button onClick={()=>{mobileMenuDeactive()}} className="mt-2 ml-2">
               <CloseIcon
                 className="text-light_red absolute top-1 left-1"
                 fontSize="large"
@@ -136,21 +136,31 @@ const MenuBar = () => {
               <img src={logo} alt="" className="h-full" />
             </div>
             <div className="headLink w-full text-[12px] p-2  flex flex-row-reverse justify-between border-t-[1px] border-b-[1px] border-medium_gray items-center text-dark_gray/50 transition-all">
-              <a
-                href="#"
+              <NavLink
+                to="/CustomerClub"
                 className="text-nowrap hover:text-black  duration-300"
+                onClick={()=>{mobileMenuDeactive()}}
               >
                 باشگاه مشتریان
-              </a>
-              <a href="#" className="text-nowrap hover:text-black duration-300">
+              </NavLink>
+              <NavLink
+                to="#"
+                className="text-nowrap hover:text-black duration-300"
+              >
                 بلاگ
-              </a>
-              <a href="#" className="text-nowrap hover:text-black duration-300">
+              </NavLink>
+              <NavLink
+                to="#"
+                className="text-nowrap hover:text-black duration-300"
+              >
                 ارتباط با ما
-              </a>
-              <a href="#" className="text-nowrap hover:text-black duration-300">
+              </NavLink>
+              <NavLink
+                to="#"
+                className="text-nowrap hover:text-black duration-300"
+              >
                 درباره ی ما
-              </a>
+              </NavLink>
             </div>
             <div className="flex flex-col  w-full h-full overflow-y-scroll">
               {menu?.map((item, index) => {
@@ -222,15 +232,17 @@ const MenuBar = () => {
                       <h2>
                         <button
                           type="button"
-                          onClick={() => toggleAccordion(index)}
+                          onClick={() => {toggleAccordion(index)}}
                           className="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200"
                           aria-expanded={openIndex === index}
                           aria-controls={`accordion-collapse-body-${index}`}
                         >
-                          <span 
+                          <NavLink
+                          to={item.title === "خانه" ? "/home" : "#"}
+                          onClick={()=>{mobileMenuDeactive()}}
                           className="text-[16px] font-shabnam-bold">
                             {item.title}
-                          </span>
+                          </NavLink>
                           <svg
                             className="w-3 h-3 -rotate-90"
                             xmlns="http://www.w3.org/2000/svg"
@@ -254,7 +266,7 @@ const MenuBar = () => {
             </div>
             <div className="w-full py-4 px-4">
               <button 
-              onClick={handleButtonClick("dashboard/mainslider")}
+              onClick={()=> handleButtonClick("/dashboard/mainslider")}
               className="w-full h-[50px] rounded-[15px]  bg-navi_blue text-white font-shabnam-medium">
                 ورود به داشبورد
               </button>
